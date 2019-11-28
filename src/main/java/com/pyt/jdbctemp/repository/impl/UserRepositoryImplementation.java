@@ -13,7 +13,7 @@ import com.pyt.jdbctemp.repository.UserRepository;
 
 @Repository
 @Transactional
-public class UserRepositoryImplementation implements UserRepository {
+public abstract class UserRepositoryImplementation implements UserRepository {
     @Autowired
     private SessionFactory sessionFactory;
     @Override
