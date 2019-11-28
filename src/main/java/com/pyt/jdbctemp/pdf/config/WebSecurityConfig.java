@@ -15,7 +15,7 @@ import com.pyt.jdbctemp.service.impl.UserDetailsServiceImpl;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
-    public UserDetailsService userDetailsService() {
+    public UserDetailsService userDetailsService1() {
         return new UserDetailsServiceImpl();
     }
     @Bean

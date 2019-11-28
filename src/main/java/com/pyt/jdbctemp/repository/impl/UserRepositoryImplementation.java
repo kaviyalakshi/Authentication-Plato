@@ -18,7 +18,7 @@ public abstract class UserRepositoryImplementation implements UserRepository {
     private SessionFactory sessionFactory;
     @Override
     public User getUserByUsername(String username) {
-        Query<User> query = sessionFactory.getCurrentSession().createQuery("FROM User u where u.username=:username", User.class);
+        Query<User> query = sessionFactory.getCurrentSession().createQuery("FROM user u where u.username=:username", User.class);
         query.setParameter("username", username);
         return query.uniqueResult();
     }

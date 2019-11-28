@@ -25,7 +25,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User not found.");
         }
-        log.info("loadUserByUsername() : {}", username);
         return new PdfUserDetails(user);
     }
 }
