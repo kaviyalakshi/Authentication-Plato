@@ -43,7 +43,7 @@ public class LoginController {
         validatePrinciple(authentication.getPrincipal());
         User loggedInUser = ((PdfUserDetails) authentication.getPrincipal()).getUserDetails();
         model.addAttribute("currentUser", loggedInUser.getUsername());
-        session.setAttribute("userId", loggedInUser.getId());
+        session.setAttribute("userId", loggedInUser.getUser_id());
         return "redirect:/wallPage";
     }
     private void validatePrinciple(Object principal) {

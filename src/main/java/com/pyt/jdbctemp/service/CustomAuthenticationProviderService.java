@@ -28,7 +28,6 @@ public class CustomAuthenticationProviderService implements AuthenticationProvid
 		User user = userRepository.getUserByUsername(username);
 		if(user != null) {
 			if(username.equals(user.getUsername()) && BCrypt.checkpw(password, user.getPassword())) {
-				//Collection<GrantedAuthority> grantedAuthorities = getGrantedAuthorities(user);
 				authenticationToken = new UsernamePasswordAuthenticationToken(
 						new org.springframework.security.core.userdetails.User(username, password, null), password);
 			}
@@ -36,17 +35,7 @@ public class CustomAuthenticationProviderService implements AuthenticationProvid
 			throw new UsernameNotFoundException("User name "+username+" not found");
 		}
 		return authenticationToken;
-	}
-
-//	private Collection<GrantedAuthority> getGrantedAuthorities(User user) {
-//		Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-//		if(user.getRole().getName().equals("admin")) {
-//			grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-//		}
-//		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-//		return grantedAuthorities;
-//	}
-//	
+	}	
 	@Override
 	public boolean supports(Class<?> authentication) {
 		return authentication.equals(UsernamePasswordAuthenticationToken.class);

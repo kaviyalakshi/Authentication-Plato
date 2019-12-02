@@ -1,5 +1,6 @@
 package com.pyt.jdbctemp.pdf.config;
 
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,7 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.pyt.jdbctemp.service.impl.UserDetailsServiceImpl;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-//@EnableOAuth2Sso
+@EnableOAuth2Sso
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public UserDetailsService userDetailsService1() {
@@ -41,13 +42,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests().antMatchers("/login", "/resource/**").permitAll()
                 .and()
-          .formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password").permitAll()
+          .formLogin().loginPage("/userlogin").usernameParameter("username").passwordParameter("password").permitAll()
                 .loginProcessingUrl("/doLogin")
                 .successForwardUrl("/postLogin")
                 .failureUrl("/loginFailed")
+                .and()
+                .authorizeRequests().antMatchers("/glogin").permitAll()
                 .and()
                 .logout().logoutUrl("/doLogout").logoutSuccessUrl("/logout").permitAll()
                 .and()
                 .csrf().disable();
     }
+//    http
+//    .csrf()
+//        .disable()
+//    .antMatcher("/**")
+//    .authorizeRequests()
+//    .antMatchers("/", "/index.html")
+//        .permitAll()
+//    .anyRequest()
+//        .authenticated();
+//}
 }
