@@ -14,7 +14,7 @@ public abstract class UserRepositoryImplementation implements UserRepository {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
     public User getUserByUsername(String username) {
-    	 User a = (User) jdbcTemplate.queryForList("select name from user where username=:username;", String.class);
+    	User a = (User) jdbcTemplate.queryForList("select name from user where username=:username;", String.class);
 		return a;
 		
 	}

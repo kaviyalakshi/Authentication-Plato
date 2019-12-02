@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests().antMatchers("/wallPage").hasAnyRole("ADMIN", "USER")
                 .and()
-                .authorizeRequests().antMatchers("/login", "/resource/**").permitAll()
+                .authorizeRequests().antMatchers("/userlogin", "/resource/**").permitAll()
                 .and()
           .formLogin().loginPage("/userlogin").usernameParameter("username").passwordParameter("password").permitAll()
                 .loginProcessingUrl("/doLogin")
@@ -48,19 +48,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/loginFailed")
                 .and()
                 .authorizeRequests().antMatchers("/glogin").permitAll()
+                .and().oauth2Login()
                 .and()
                 .logout().logoutUrl("/doLogout").logoutSuccessUrl("/logout").permitAll()
                 .and()
                 .csrf().disable();
     }
-//    http
-//    .csrf()
-//        .disable()
-//    .antMatcher("/**")
-//    .authorizeRequests()
-//    .antMatchers("/", "/index.html")
-//        .permitAll()
-//    .anyRequest()
-//        .authenticated();
-//}
 }

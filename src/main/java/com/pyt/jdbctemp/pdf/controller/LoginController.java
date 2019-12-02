@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LoginController {
     private static final Logger log = LogManager.getLogger(LoginController.class);
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/userlogin", method = RequestMethod.GET)
     public String login() {
         return "login";
     }
@@ -35,10 +35,13 @@ public class LoginController {
         session.setComplete();
         return "redirect:/welcome";
     }
+    @RequestMapping(value ="/glogin",method = RequestMethod.GET)
+    public String glogin() {
+    	return "google login";
+    }
     @RequestMapping(value = "/postLogin", method = RequestMethod.POST)
     public String postLogin(Model model, HttpSession session) {
         log.info("postLogin()");
-        // read principal out of security context and set it to session
         UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
         validatePrinciple(authentication.getPrincipal());
         User loggedInUser = ((PdfUserDetails) authentication.getPrincipal()).getUserDetails();
