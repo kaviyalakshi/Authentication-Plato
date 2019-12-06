@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LoginController {
     private static final Logger log = LogManager.getLogger(LoginController.class);
-    @RequestMapping(value = "/userlogin", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         return "login";
     }
